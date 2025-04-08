@@ -11,29 +11,37 @@ export type FilledSpot = {
 
 export type Spot = EmptySpot | FilledSpot;
 
-export type Row = Spot[];
+export type Column = Spot[];
 
-export type Board = Row[];
+export type Board = Column[];
 
 
 // Initialization
 
-function emptyRow(depthOfRow: number): Row {
+function emptyColumn(depthOfRow: number): Column {
     return new Array<Spot>(depthOfRow).fill({ type: "empty-spot" })
 }
 
 export function emptyBoard(numberOfRows: number, depthOfRows: number): Board {
-    return new Array<Row>(numberOfRows).fill(emptyRow(depthOfRows))
+    return new Array<Column>(numberOfRows).fill(emptyColumn(depthOfRows))
 }
 
 // Add pieces to the board
-export function nextFreeSpot(board: Board, row: number): number {
-    const firstFilled = board[row].findIndex(spot => spot.type === "filled-spot")
+export function nextFreeSpot(board: Board, column: number): number {
+    const firstFilled = board[column].findIndex(spot => spot.type === "filled-spot")
 
     if (firstFilled < 0) {
-        return board[row].length - 1
+        return board[column].length - 1
     }
     return firstFilled - 1
+}
+
+export function canAddPiece(board: Board, column: number): boolean {
+    return nextFreeSpot(board, column) >= 0
+}
+
+export function columnsAreAvailable(board: Board): boolean[] {
+    return board.map((_, columnIndex) => canAddPiece(board, columnIndex))
 }
 
 export class RowFullError extends Error {

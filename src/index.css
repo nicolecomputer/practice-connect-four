@@ -8,6 +8,7 @@ body,
 main,
 section,
 div,
+button,
 header,
 nav {
   display: flex;

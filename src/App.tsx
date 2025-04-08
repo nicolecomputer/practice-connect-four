@@ -4,6 +4,7 @@ import GameBoard from './components/game-board'
 import { connectFourReducer, defaultState } from './reducer'
 import PieceDropper from './components/piece-dropper'
 import { GameStateDescription } from './components/game-state-description'
+import { columnsAreAvailable } from './lib/connect-four'
 
 function App() {
   const [state, dispatch] = React.useReducer(connectFourReducer, defaultState)
@@ -14,6 +15,7 @@ function App() {
         <PieceDropper
           numberOfColumns={state.board.length}
           currentTurn={state.currentTurn}
+          columnIsAvailable={columnsAreAvailable(state.board)}
           onDrop={(column) => {
             dispatch({ type: 'add-piece', color: state.currentTurn, column: column })
           }}
