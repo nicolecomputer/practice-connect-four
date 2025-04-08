@@ -5,13 +5,14 @@ type PieceDropperProps = {
     numberOfColumns: number,
     currentTurn: Color,
     columnIsAvailable: boolean[]
+    active: boolean
     onDrop: (column: number) => void
 }
-export default function PieceDropper({ numberOfColumns, columnIsAvailable, onDrop, currentTurn }: PieceDropperProps) {
+export default function PieceDropper({ numberOfColumns, active, columnIsAvailable, onDrop, currentTurn }: PieceDropperProps) {
     return (
         <div className={`piece-dropper-container current-turn-${currentTurn}`}>
             {new Array(numberOfColumns).fill(0).map((_, columnIndex: number) => {
-                if (columnIsAvailable[columnIndex]) {
+                if (active && columnIsAvailable[columnIndex]) {
                     return (
                         <button
                             className="piece-dropper"

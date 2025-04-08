@@ -14,6 +14,7 @@ function App() {
         <h1 className='gametitle'>Connect 4</h1>
         <PieceDropper
           numberOfColumns={state.board.length}
+          active={state.gameState.type === "in-play"}
           currentTurn={state.currentTurn}
           columnIsAvailable={columnsAreAvailable(state.board)}
           onDrop={(column) => {
