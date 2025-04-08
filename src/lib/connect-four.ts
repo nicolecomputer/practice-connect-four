@@ -73,3 +73,22 @@ export function addPiece(board: Board, color: Color, row: number): Board {
 }
 
 // Check game state
+export type GameInPlay = {
+    type: "in-play"
+}
+export type GameDraw = {
+    type: "cats-game"
+}
+
+export type GameWon = {
+    type: "won",
+    color: Color
+}
+export type GameState = GameInPlay | GameDraw | GameWon;
+
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
+export function gameState(board: Board): GameState {
+    return {
+        type: "in-play"
+    }
+}

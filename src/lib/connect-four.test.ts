@@ -1,5 +1,5 @@
-import { addPiece, emptyBoard, InvalidRowError, nextFreeSpot, RowFullError } from "./connect-four";
-import type { Board } from "./connect-four";
+import { addPiece, emptyBoard, gameState, InvalidRowError, nextFreeSpot, RowFullError } from "./connect-four";
+import type { Board, GameState } from "./connect-four";
 
 describe("initialization", () => {
     describe("empty board", () => {
@@ -85,6 +85,18 @@ describe("Add Pieces to the board", () => {
             expect(() =>
                 addPiece(board, "red", 2)
             ).toThrow(InvalidRowError);
+        })
+    })
+
+    describe("game state", () => {
+        it("for an empty board, the game is in play", () => {
+            const expected: GameState = {
+                type: "in-play"
+            }
+
+            const board = emptyBoard(2, 2)
+
+            expect(gameState(board)).toEqual(expected)
         })
     })
 })
