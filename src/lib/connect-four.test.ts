@@ -116,26 +116,26 @@ describe("game state", () => {
     })
 
     describe("Win conditions", () => {
-        // test("with a row that contains 4 of the same color", () => {
-        //     const expected: GameState = {
-        //         type: "won",
-        //         color: "red"
-        //     }
+        test("with a row that contains 4 of the same color", () => {
+            const expected: GameState = {
+                type: "won",
+                color: "red"
+            }
 
-        //     const board = [
-        //         [],
-        //         [],
-        //         [],
-        //         [],
-        //         [],
-        //         [],
-        //         [],
-        //     ]
+            const board: Board = [
+                [{ type: "empty-spot" }, { type: "empty-spot" }, { type: "filled-spot", color: 'red' }, { type: "empty-spot" }, { type: "empty-spot" }, { type: "empty-spot" }],
+                [{ type: "empty-spot" }, { type: "empty-spot" }, { type: "filled-spot", color: 'red' }, { type: "empty-spot" }, { type: "empty-spot" }, { type: "empty-spot" }],
+                [{ type: "empty-spot" }, { type: "empty-spot" }, { type: "filled-spot", color: 'red' }, { type: "empty-spot" }, { type: "empty-spot" }, { type: "empty-spot" }],
+                [{ type: "empty-spot" }, { type: "empty-spot" }, { type: "filled-spot", color: 'red' }, { type: "empty-spot" }, { type: "empty-spot" }, { type: "empty-spot" }],
+                [{ type: "empty-spot" }, { type: "empty-spot" }, { type: "filled-spot", color: 'red' }, { type: "empty-spot" }, { type: "empty-spot" }, { type: "empty-spot" }],
+                [{ type: "empty-spot" }, { type: "empty-spot" }, { type: "filled-spot", color: 'red' }, { type: "empty-spot" }, { type: "empty-spot" }, { type: "empty-spot" }],
+                [{ type: "empty-spot" }, { type: "empty-spot" }, { type: "filled-spot", color: 'red' }, { type: "empty-spot" }, { type: "empty-spot" }, { type: "empty-spot" }],
+            ]
 
-        //     const result = gameState(board)
+            const result = gameState(board)
 
-        //     expect(result).toEqual(expected)
-        // })
+            expect(result).toEqual(expected)
+        })
 
         test("with a column that contains 4 of the same color", () => {
             const expected: GameState = {

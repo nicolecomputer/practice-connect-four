@@ -94,29 +94,50 @@ export type GameWon = {
 }
 export type GameState = GameInPlay | GameDraw | GameWon;
 
-// function winnerInRows(board: Board): Color | null {
-//     return null
-// }
+
+function inARow(targetCount: number, spots: Spot[]): Color | null {
+    let currentColor: Color | undefined = undefined
+    let inARow = 0
+    for (const spot of spots) {
+        if (spot.type === "filled-spot") {
+            if (spot.color === currentColor) {
+                inARow += 1
+            } else {
+                currentColor = spot.color
+                inARow = 1
+            }
+
+            if (inARow === targetCount) {
+                return currentColor
+            }
+        } else {
+            currentColor = undefined
+            inARow = 0
+        }
+    }
+
+    return null
+}
 
 function winnerInColumns(board: Board): Color | null {
     for (const column of board) {
-        let currentColor: Color | undefined = undefined
-        let inARow = 0
-        for (const spot of column) {
-            if (spot.type === "filled-spot") {
-                if (spot.color === currentColor) {
-                    inARow += 1
-                } else {
-                    currentColor = spot.color
-                    inARow = 1
-                }
-
-                if (inARow === 4) {
-                    return currentColor
-                }
-            }
+        const winnerForColumn = inARow(4, column)
+        if (winnerForColumn) {
+            return winnerForColumn
         }
     }
+    return null
+}
+
+function winnerInRows(board: Board): Color | null {
+    for (let rowId = 0; rowId < board[0].length; rowId++) {
+        const row = board.map(column => column[rowId])
+        const winnerForRow = inARow(4, row)
+        if (winnerForRow) {
+            return winnerForRow
+        }
+    }
+
     return null
 }
 
@@ -139,10 +160,9 @@ export function boardIsFull(board: Board): boolean {
     return true;
 }
 
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
 export function gameState(board: Board): GameState {
     const winner = [
-        // winnerInRows(board),
+        winnerInRows(board),
         winnerInColumns(board),
         // winnerInForwardDiagonals(board),
         // winnerInBackwardDiagonals(board)
