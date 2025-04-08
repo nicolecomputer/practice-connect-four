@@ -92,3 +92,14 @@ export function gameState(board: Board): GameState {
         type: "in-play"
     }
 }
+
+// Utility functions
+export function nextTurn(color: Color): Color {
+    if (color === "red") {
+        return "blue"
+    } else if (color === "blue") {
+        return "red"
+    }
+
+    throw new Error(`unknown color ${color}`)
+}

@@ -1,5 +1,5 @@
-import { addPiece, emptyBoard, gameState, InvalidRowError, nextFreeSpot, RowFullError } from "./connect-four";
-import type { Board, GameState } from "./connect-four";
+import { addPiece, emptyBoard, gameState, InvalidRowError, nextFreeSpot, nextTurn, RowFullError } from "./connect-four";
+import type { Board, Color, GameState } from "./connect-four";
 
 describe("initialization", () => {
     describe("empty board", () => {
@@ -97,6 +97,22 @@ describe("Add Pieces to the board", () => {
             const board = emptyBoard(2, 2)
 
             expect(gameState(board)).toEqual(expected)
+        })
+    })
+})
+
+describe("utility functions", () => {
+    describe("next turn", () => {
+        it('returns blue when the current player is red', () => {
+            const expected: Color = "blue"
+            const result = nextTurn("red")
+            expect(result).toEqual(expected)
+        })
+
+        it('returns red when the current player is blue', () => {
+            const expected: Color = "red"
+            const result = nextTurn("blue")
+            expect(result).toEqual(expected)
         })
     })
 })
