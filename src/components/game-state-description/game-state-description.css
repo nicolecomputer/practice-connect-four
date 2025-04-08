@@ -5,12 +5,39 @@
   font-family: Arial, Helvetica, sans-serif;
   font-weight: bold;
   color: darkblue;
+
+  flex-direction: row;
+  gap: 10px;
+  justify-content: end;
+
+  p::first-letter {
+    text-transform: uppercase;
+  }
 }
 
-.red-turn {
+.red-highlight {
   color: var(--piece-color-red);
 }
 
-.blue-turn {
+.blue-highlight {
   color: var(--piece-color-blue);
+}
+
+.play-again-button {
+  border: none;
+  background-color: blueviolet;
+  color: white;
+  border-radius: 4px;
+  padding: 6px 12px;
+  box-shadow: 1px 1px 0px lightgray;
+
+  &:hover {
+    background-color: rgb(97, 30, 159);
+    box-shadow: 1px 1px 3px rgb(131, 131, 131);
+  }
+
+  &:active {
+    transform: translate(1px, 1px);
+    box-shadow: none;
+  }
 }

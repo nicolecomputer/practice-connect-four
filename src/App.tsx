@@ -21,7 +21,11 @@ function App() {
         <GameBoard board={state.board} />
         <GameStateDescription
           state={state.gameState}
-          currentColor={state.currentTurn} />
+          currentColor={state.currentTurn}
+          onPlayAgain={() => {
+            dispatch({ type: "restart" })
+          }}
+        />
       </div>
     </>
   )
