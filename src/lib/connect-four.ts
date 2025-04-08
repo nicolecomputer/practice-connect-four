@@ -94,21 +94,39 @@ export type GameWon = {
 }
 export type GameState = GameInPlay | GameDraw | GameWon;
 
-function winnerInRows(board: Board): Color | null {
-    return null
-}
+// function winnerInRows(board: Board): Color | null {
+//     return null
+// }
 
 function winnerInColumns(board: Board): Color | null {
+    for (const column of board) {
+        let currentColor: Color | undefined = undefined
+        let inARow = 0
+        for (const spot of column) {
+            if (spot.type === "filled-spot") {
+                if (spot.color === currentColor) {
+                    inARow += 1
+                } else {
+                    currentColor = spot.color
+                    inARow = 1
+                }
+
+                if (inARow === 4) {
+                    return currentColor
+                }
+            }
+        }
+    }
     return null
 }
 
-function winnerInForwardDiagonals(board: Board): Color | null {
-    return null;
-}
+// function winnerInForwardDiagonals(board: Board): Color | null {
+//     return null;
+// }
 
-function winnerInBackwardDiagonals(board: Board): Color | null {
-    return null;
-}
+// function winnerInBackwardDiagonals(board: Board): Color | null {
+//     return null;
+// }
 
 export function boardIsFull(board: Board): boolean {
     for (const column of board) {
@@ -124,10 +142,10 @@ export function boardIsFull(board: Board): boolean {
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 export function gameState(board: Board): GameState {
     const winner = [
-        winnerInRows(board),
+        // winnerInRows(board),
         winnerInColumns(board),
-        winnerInForwardDiagonals(board),
-        winnerInBackwardDiagonals(board)
+        // winnerInForwardDiagonals(board),
+        // winnerInBackwardDiagonals(board)
     ].filter(winner => winner !== null)
 
     if (winner.length > 0) {

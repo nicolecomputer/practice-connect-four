@@ -100,7 +100,9 @@ describe("game state", () => {
             [{ type: "filled-spot", color: 'blue' }, { type: "filled-spot", color: 'red' }],
         ]
 
-        expect(gameState(board)).toEqual(expected)
+        const result = gameState(board);
+
+        expect(result).toEqual(expected)
     })
     test("for an empty board, the game is in play", () => {
         const expected: GameState = {
@@ -108,8 +110,95 @@ describe("game state", () => {
         }
 
         const board = emptyBoard(2, 2)
+        const result = gameState(board)
 
-        expect(gameState(board)).toEqual(expected)
+        expect(result).toEqual(expected)
+    })
+
+    describe("Win conditions", () => {
+        // test("with a row that contains 4 of the same color", () => {
+        //     const expected: GameState = {
+        //         type: "won",
+        //         color: "red"
+        //     }
+
+        //     const board = [
+        //         [],
+        //         [],
+        //         [],
+        //         [],
+        //         [],
+        //         [],
+        //         [],
+        //     ]
+
+        //     const result = gameState(board)
+
+        //     expect(result).toEqual(expected)
+        // })
+
+        test("with a column that contains 4 of the same color", () => {
+            const expected: GameState = {
+                type: "won",
+                color: "red"
+            }
+
+            const board: Board = [
+                [{ type: "filled-spot", color: 'blue' }, { type: "filled-spot", color: 'blue' }, { type: "filled-spot", color: 'red' }, { type: "filled-spot", color: 'red' }, { type: "filled-spot", color: 'red' }, { type: "filled-spot", color: 'red' }],
+                [{ type: "empty-spot" }, { type: "empty-spot" }, { type: "empty-spot" }, { type: "empty-spot" }, { type: "empty-spot" }, { type: "empty-spot" }],
+                [{ type: "empty-spot" }, { type: "empty-spot" }, { type: "empty-spot" }, { type: "empty-spot" }, { type: "empty-spot" }, { type: "empty-spot" }],
+                [{ type: "empty-spot" }, { type: "empty-spot" }, { type: "empty-spot" }, { type: "empty-spot" }, { type: "empty-spot" }, { type: "empty-spot" }],
+                [{ type: "empty-spot" }, { type: "empty-spot" }, { type: "empty-spot" }, { type: "empty-spot" }, { type: "empty-spot" }, { type: "empty-spot" }],
+                [{ type: "empty-spot" }, { type: "empty-spot" }, { type: "empty-spot" }, { type: "empty-spot" }, { type: "empty-spot" }, { type: "empty-spot" }],
+                [{ type: "empty-spot" }, { type: "empty-spot" }, { type: "empty-spot" }, { type: "empty-spot" }, { type: "empty-spot" }, { type: "empty-spot" }],
+            ]
+
+            const result = gameState(board)
+
+            expect(result).toEqual(expected)
+        })
+
+        // test("with a forward diagonal that contains 4 of the same color", () => {
+        //     const expected: GameState = {
+        //         type: "won",
+        //         color: "red"
+        //     }
+
+        //     const board = [
+        //         [],
+        //         [],
+        //         [],
+        //         [],
+        //         [],
+        //         [],
+        //         [],
+        //     ]
+
+        //     const result = gameState(board)
+
+        //     expect(result).toEqual(expected)
+        // })
+
+        // test("with a backward diagonal that contains 4 of the same color", () => {
+        //     const expected: GameState = {
+        //         type: "won",
+        //         color: "red"
+        //     }
+
+        //     const board = [
+        //         [],
+        //         [],
+        //         [],
+        //         [],
+        //         [],
+        //         [],
+        //         [],
+        //     ]
+
+        //     const result = gameState(board)
+
+        //     expect(result).toEqual(expected)
+        // })
     })
 })
 
