@@ -44,30 +44,30 @@ export class RowFullError extends Error {
     }
 }
 
-export class InvalidRowError extends Error {
+export class InvalidColumnError extends Error {
     constructor(message: string = "") {
         super(message);
         this.name = "ConnectFour.InvalidRow";
-        Object.setPrototypeOf(this, InvalidRowError.prototype);
+        Object.setPrototypeOf(this, InvalidColumnError.prototype);
     }
 }
 
-export function addPiece(board: Board, color: Color, row: number): Board {
-    if (row < 0 || row > (board.length - 1)) {
-        throw new InvalidRowError()
+export function addPiece(board: Board, color: Color, column: number): Board {
+    if (column < 0 || column > (board.length - 1)) {
+        throw new InvalidColumnError()
     }
 
-    const spotForPiece = nextFreeSpot(board, row)
+    const spotForPiece = nextFreeSpot(board, column)
 
     if (spotForPiece < 0) {
-        throw new RowFullError(`Row ${row} is already full`)
+        throw new RowFullError(`Row ${column} is already full`)
     }
 
-    const nextRow = [...board[row]]
+    const nextRow = [...board[column]]
     nextRow[spotForPiece] = { type: "filled-spot", color: color }
 
     const nextBoard = [...board]
-    nextBoard[row] = nextRow
+    nextBoard[column] = nextRow
 
     return nextBoard
 }

@@ -1,4 +1,4 @@
-import { addPiece, emptyBoard, gameState, InvalidRowError, nextFreeSpot, nextTurn, RowFullError } from "./connect-four";
+import { addPiece, emptyBoard, gameState, InvalidColumnError, nextFreeSpot, nextTurn, RowFullError } from "./connect-four";
 import type { Board, Color, GameState } from "./connect-four";
 
 describe("initialization", () => {
@@ -77,14 +77,14 @@ describe("Add Pieces to the board", () => {
             const board = emptyBoard(2, 2)
             expect(() =>
                 addPiece(board, "red", -1)
-            ).toThrow(InvalidRowError);
+            ).toThrow(InvalidColumnError);
         })
 
         it('throws an error when the row is outside the board', () => {
             const board = emptyBoard(2, 2)
             expect(() =>
                 addPiece(board, "red", 2)
-            ).toThrow(InvalidRowError);
+            ).toThrow(InvalidColumnError);
         })
     })
 

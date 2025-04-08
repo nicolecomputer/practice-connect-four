@@ -9,7 +9,7 @@ export type ConnectFourState = {
 export type AddPieceAction = {
     type: "add-piece",
     color: Color,
-    row: number
+    column: number
 }
 
 export type RestartGameAction = {
@@ -30,7 +30,7 @@ export function connectFourReducer(state: ConnectFourState, action: Action): Con
     if (action.type === "restart") {
         return defaultState
     } else if (action.type === "add-piece") {
-        const nextBoard = addPiece(state.board, action.color, action.row)
+        const nextBoard = addPiece(state.board, action.color, action.column)
         return {
             board: nextBoard,
             currentTurn: nextTurn(state.currentTurn),
