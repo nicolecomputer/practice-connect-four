@@ -87,19 +87,32 @@ describe("Add Pieces to the board", () => {
             ).toThrow(InvalidColumnError);
         })
     })
+})
 
-    describe("game state", () => {
-        it("for an empty board, the game is in play", () => {
-            const expected: GameState = {
-                type: "in-play"
-            }
+describe("game state", () => {
+    test("for a filled board with no winner the state is a cats-game", () => {
+        const expected: GameState = {
+            type: "cats-game"
+        }
 
-            const board = emptyBoard(2, 2)
+        const board: Board = [
+            [{ type: "filled-spot", color: 'blue' }, { type: "filled-spot", color: 'red' }],
+            [{ type: "filled-spot", color: 'blue' }, { type: "filled-spot", color: 'red' }],
+        ]
 
-            expect(gameState(board)).toEqual(expected)
-        })
+        expect(gameState(board)).toEqual(expected)
+    })
+    test("for an empty board, the game is in play", () => {
+        const expected: GameState = {
+            type: "in-play"
+        }
+
+        const board = emptyBoard(2, 2)
+
+        expect(gameState(board)).toEqual(expected)
     })
 })
+
 
 describe("utility functions", () => {
     describe("next turn", () => {

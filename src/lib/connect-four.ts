@@ -110,8 +110,15 @@ function winnerInBackwardDiagonals(board: Board): Color | null {
     return null;
 }
 
-function boardIsFull(board: Board): boolean {
-    return false;
+export function boardIsFull(board: Board): boolean {
+    for (const column of board) {
+        for (const spot of column) {
+            if (spot.type === "empty-spot") {
+                return false
+            }
+        }
+    }
+    return true;
 }
 
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
