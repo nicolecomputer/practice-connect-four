@@ -2,7 +2,7 @@ body {
   align-items: center;
 }
 .connect-four-game {
-  width: 600px;
+  width: 500px;
 }
 
 /* To keep things lined up these MUST have the same width */
