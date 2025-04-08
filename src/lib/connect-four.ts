@@ -94,8 +94,48 @@ export type GameWon = {
 }
 export type GameState = GameInPlay | GameDraw | GameWon;
 
+function winnerInRows(board: Board): Color | null {
+    return null
+}
+
+function winnerInColumns(board: Board): Color | null {
+    return null
+}
+
+function winnerInForwardDiagonals(board: Board): Color | null {
+    return null;
+}
+
+function winnerInBackwardDiagonals(board: Board): Color | null {
+    return null;
+}
+
+function boardIsFull(board: Board): boolean {
+    return false;
+}
+
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 export function gameState(board: Board): GameState {
+    const winner = [
+        winnerInRows(board),
+        winnerInColumns(board),
+        winnerInForwardDiagonals(board),
+        winnerInBackwardDiagonals(board)
+    ].filter(winner => winner !== null)
+
+    if (winner.length > 0) {
+        return {
+            type: "won",
+            color: winner[0]
+        }
+    }
+
+    if (boardIsFull(board)) {
+        return {
+            type: "cats-game"
+        }
+    }
+
     return {
         type: "in-play"
     }
