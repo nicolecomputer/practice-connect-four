@@ -1,3 +1,5 @@
+import "./game-board.css"
+
 import { Board } from "../../lib/connect-four"
 
 import { FilledSpot, EmptySpot } from "./Spots"
@@ -7,9 +9,11 @@ type GameBoardProps = {
 }
 export default function GameBoard({ board }: GameBoardProps) {
     return (
-        <div className="game-board">
-            {new Array(board[0].length).map((_, column) => {
-                return new Array(board.length).map((_, row) => {
+        <div className="game-board" style={{
+            gridTemplateColumns: `repeat(${board.length}, 1fr)`
+        }}>
+            {new Array(board[0].length).fill(0).map((_, row) => {
+                return new Array(board.length).fill(0).map((_, column) => {
                     const spot = board[column][row]
                     if (spot.type === "empty-spot") {
                         return <EmptySpot />

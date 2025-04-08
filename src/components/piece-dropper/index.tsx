@@ -17,7 +17,11 @@ export default function PieceDropper({ numberOfColumns, onDrop, currentTurn }: P
                     onClick={() => {
                         onDrop(columnIndex)
                     }}
-                ></button>
+
+                >
+                    <div className={`game-piece piece-${currentTurn}`}></div>
+
+                </button>
             )
             )}
         </div>

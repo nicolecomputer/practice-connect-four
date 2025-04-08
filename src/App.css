@@ -10,10 +10,19 @@ body {
 .game-board {
   width: 100%;
   gap: 10px;
+  padding: 10px;
 }
 
 .piece-dropper,
 .game-board-spot {
   width: 100%;
   aspect-ratio: 1;
+}
+
+.gametitle {
+  text-align: center;
+  color: blueviolet;
+  font-family: Arial, Helvetica, sans-serif;
+  padding: 8px 0;
+  border-bottom: 1px solid blueviolet;
 }

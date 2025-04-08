@@ -9,7 +9,7 @@ function App() {
   return (
     <>
       <div className="connect-four-game">
-        <h1>Connect 4</h1>
+        <h1 className='gametitle'>Connect 4</h1>
         <PieceDropper
           numberOfColumns={state.board.length}
           currentTurn={state.currentTurn}
