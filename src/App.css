@@ -1,0 +1,19 @@
+body {
+  align-items: center;
+}
+.connect-four-game {
+  width: 600px;
+}
+
+/* To keep things lined up these MUST have the same width */
+.piece-dropper-container,
+.game-board {
+  width: 100%;
+  gap: 10px;
+}
+
+.piece-dropper,
+.game-board-spot {
+  width: 100%;
+  aspect-ratio: 1;
+}

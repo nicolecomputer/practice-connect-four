@@ -1,0 +1,21 @@
+.piece-dropper-container {
+  flex-direction: row;
+}
+
+.current-turn-red {
+  --current-piece-color: var(--piece-color-red);
+}
+
+.current-turn-blue {
+  --current-piece-color: var(--piece-color-blue);
+}
+
+.piece-dropper {
+  border-radius: 50%;
+  border: none;
+  background-color: transparent;
+  &:hover {
+    background-color: var(--current-piece-color);
+    opacity: 0.7;
+  }
+}

@@ -8,10 +8,11 @@ function App() {
   const [state, dispatch] = React.useReducer(connectFourReducer, defaultState)
   return (
     <>
-      <div>
+      <div className="connect-four-game">
         <h1>Connect 4</h1>
         <PieceDropper
           numberOfColumns={state.board.length}
+          currentTurn={state.currentTurn}
           onDrop={(column) => {
             dispatch({ type: 'add-piece', color: state.currentTurn, column: column })
           }}
